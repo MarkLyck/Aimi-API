@@ -20,6 +20,7 @@ function speechtagger(msgObj) {
       switch(word[1]) {
         case 'CD': // Numbers
           numbers.push(word[0])
+          break
         case 'NN': // Nouns
         case 'NNS':
           nouns.push(word[0])

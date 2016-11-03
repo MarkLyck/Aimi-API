@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var tasks = require('../NLP/tasks')
+var NLPtasks = require('../NLP/tasks')
+var replyTasks = require('../Reply/tasks')
 
 router.post('/', function(req, res, next) {
   // console.log(req.body)
-  tasks(req.body.body)
+  NLPtasks(req.body.body)
+  .then((msgObj) => replyTasks(msgObj))
   .then((response) => {
     console.log('sending response: ', response)
     res.send(response)

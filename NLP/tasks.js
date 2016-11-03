@@ -1,6 +1,6 @@
 var normalizer = require('chatbot-normalizer')
-var questionInfo = require('./questionInfo')
-var speechTagger = require('./speechTagger')
+var questionInfo = require('./plugins/questionInfo')
+var speechTagger = require('./plugins/speechTagger')
 
 function tasks(message) {
   return new Promise((resolve, reject) => {

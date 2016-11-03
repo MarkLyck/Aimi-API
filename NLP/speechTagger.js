@@ -13,15 +13,18 @@ function speechtagger(msgObj) {
     var adverbs = []
 
     var names = []
+    var numbers = []
 
     const taggedWords = wordTagger.map(word => {
 
       switch(word[1]) {
+        case 'CD': // Numbers
+          numbers.push(word[0])
         case 'NN': // Nouns
         case 'NNS':
           nouns.push(word[0])
           break
-        case 'NNP':
+        case 'NNP': // Names
         case 'NNPS':
           names.push(word[0])
           break
@@ -60,6 +63,7 @@ function speechtagger(msgObj) {
     msgObj.adverbs = adverbs
 
     msgObj.names = names
+    msgObj.numbers = numbers
 
     resolve(msgObj)
   })

@@ -75,6 +75,11 @@ const letterCounting = (msgObj) => {
 }
 
 const numberCounting = (msgObj) => {
+  if (msgObj.cleanedMessage.indexOf('after') > -1 && msgObj.numbers.length === 1) {
+    msgObj.reply = msgObj.numbers[0] + 1
+  } else if (msgObj.cleanedMessage.indexOf('before') > -1 && msgObj.numbers.length === 1) {
+    msgObj.reply = msgObj.numbers[0] - 1
+  }
   return msgObj
 }
 

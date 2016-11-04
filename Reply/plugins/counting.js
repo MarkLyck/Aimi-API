@@ -27,25 +27,51 @@ const letterCounting = (msgObj) => {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
   // Find numbered letter in alphabet
-  if (msgObj.cleanedMessage.indexOf('alphabet') > -1 && msgObj.numbers.length === 1
-      && _.intersection(msgObj.cleanedMessage.split(' '), countingWords).length === 0) {
+  if (  msgObj.cleanedMessage.indexOf('alphabet') > -1 && msgObj.numbers.length === 1
+        && _.intersection(msgObj.cleanedMessage.split(' '), countingWords).length === 0) {
     if (msgObj.numbers[0] <= (alphabet.length + 1)) {
       const number = msgObj.numbers[0] - 1
       msgObj.reply = alphabet[number]
     }
   // Find first or last letter in alphabet
-  } else if (_.intersection(msgObj.cleanedMessage.split(' '), countingWords).length > 0
-            && msgObj.cleanedMessage.indexOf('alphabet') > -1) {
+  } else if ( _.intersection(msgObj.cleanedMessage.split(' '), countingWords).length > 0
+              && msgObj.cleanedMessage.indexOf('alphabet') > -1) {
     if (msgObj.cleanedMessage.indexOf('1st') > -1) {
       msgObj.reply = alphabet[0]
     } else if (msgObj.cleanedMessage.indexOf('last') > -1) {
       msgObj.reply = alphabet[alphabet.length - 1]
     }
     // TODO Handle after and before + number e.g. what comes after the 3rd letter in the alphabet?
-  } else if (msgObj.isQuestion
-    && msgObj.cleanedMessage.indexOf('alphabet') > -1
-    && msgObj.cleanedMessage.indexOf('letters') > -1) {
+
+  // Handle Amount of letters in alphabet
+  } else if ( msgObj.isQuestion
+              && msgObj.cleanedMessage.indexOf('alphabet') > -1
+              && msgObj.cleanedMessage.indexOf('letters') > -1) {
     msgObj.reply = alphabet.length
+  } else if (msgObj.cleanedMessage.indexOf('in') > -1 && msgObj.cleanedMessage.indexOf('letters') > -1) {
+    const indexStartChecker = msgObj.cleanedMessage.split(' ').indexOf('in') + 1
+    var wordToCount = msgObj.cleanedMessage.split(' ')[indexStartChecker]
+
+    if (msgObj.nouns.length >= 2) {
+      const possibleWords = msgObj.taggedWords.filter((word, i) => {
+        if (i < indexStartChecker) {
+          return false
+        }
+        if (word[1] === 'NN' || word[1] === 'NNS' || word[1] === 'NNP' || word[1] === 'NNPS') {
+          return true
+        } else {
+          return false
+        }
+      })
+      wordToCount = possibleWords[0][0]
+    }
+    if (wordToCount !== 'name') {
+      msgObj.reply = wordToCount.length
+    } else if (msgObj.names.length > 0) {
+      msgObj.reply = msgObj.names[0].length
+    }
+    // TODO Check if it's in nouns as well
+
   }
   return msgObj
 }

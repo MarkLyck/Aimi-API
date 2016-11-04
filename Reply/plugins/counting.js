@@ -70,8 +70,6 @@ const letterCounting = (msgObj) => {
     } else if (msgObj.names.length > 0) {
       msgObj.reply = msgObj.names[0].length
     }
-    // TODO Check if it's in nouns as well
-
   }
   return msgObj
 }

@@ -49,7 +49,7 @@ const math = (msgObj) => {
         let mathOperation = normalizeOperators(msgObj.cleanedMessage)
         mathOperation = removeJunkChars(mathOperation, msgObj)
         const result = mathjs.eval(mathOperation.join(' '))
-        msgObj.reply = result
+        msgObj.reply = 'It\'s ' + result
       }
       resolve(msgObj)
     }

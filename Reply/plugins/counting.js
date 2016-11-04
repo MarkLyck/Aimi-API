@@ -24,14 +24,16 @@ const counting = (msgObj) => {
 }
 
 const letterCounting = (msgObj) => {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVXYZ'
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+  // Find numbered letter in alphabet
   if (msgObj.cleanedMessage.indexOf('alphabet') > -1 && msgObj.numbers.length === 1
       && _.intersection(msgObj.cleanedMessage.split(' '), countingWords).length === 0) {
     if (msgObj.numbers[0] <= (alphabet.length + 1)) {
       const number = msgObj.numbers[0] - 1
       msgObj.reply = alphabet[number]
     }
+  // Find first or last letter in alphabet
   } else if (_.intersection(msgObj.cleanedMessage.split(' '), countingWords).length > 0
             && msgObj.cleanedMessage.indexOf('alphabet') > -1) {
     if (msgObj.cleanedMessage.indexOf('1st') > -1) {
@@ -39,7 +41,11 @@ const letterCounting = (msgObj) => {
     } else if (msgObj.cleanedMessage.indexOf('last') > -1) {
       msgObj.reply = alphabet[alphabet.length - 1]
     }
-    // Handler after and before + number e.g. what comes after the 3rd letter in the alphabet?
+    // TODO Handle after and before + number e.g. what comes after the 3rd letter in the alphabet?
+  } else if (msgObj.isQuestion
+    && msgObj.cleanedMessage.indexOf('alphabet') > -1
+    && msgObj.cleanedMessage.indexOf('letters') > -1) {
+    msgObj.reply = alphabet.length
   }
   return msgObj
 }

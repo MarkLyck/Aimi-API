@@ -6,7 +6,9 @@ const letterCountingWords = ['alphabet', 'letter', 'letters']
 
 const counting = (msgObj) => {
   return new Promise(resolve => {
-    if (msgObj.reply) {
+    if (msgObj.reply || !msgObj.isQuestion) {
+      resolve(msgObj)
+    } else if (msgObj.qType !== 'NUM:count' && msgObj.qType !== 'DESC:def') {
       resolve(msgObj)
     } else if (
       _.intersection(msgObj.cleanedMessage.split(' '), countingTriggers).length === 0

@@ -33,7 +33,7 @@ To qualify for the Loebner Prize I need to easily pass the screener questions. H
 - [ ] What is the name of my friend who fishes for trout?
 - [ ] What would I use to put a nail into a wall?
 - [X] What is the 3rd letter in the alphabet?
-- [ ] What time is it now?
+- [X] What time is it now?
 
 Chat bots have to be great at answering questions, this is usually how they are challenged, and IBM’s Watson is probably the best question and answer system. However unlike Watson, we don’t need to be 100% accurate when it comes to answering questions. This is because our bot is an emotional, believable persona, not a cold, flawlessly accurate machine. I can significantly reduce the knowledge base that drives the bot, after all, nobody likes a know-it-all.
 

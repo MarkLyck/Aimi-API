@@ -62,6 +62,7 @@ function speechtagger(msgObj) {
     msgObj.pronouns = pronouns
     msgObj.adjectives = adjectives
     msgObj.adverbs = adverbs
+    msgObj.units = []
 
     msgObj.names = names
     msgObj.numbers = numbers

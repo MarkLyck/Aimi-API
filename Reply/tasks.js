@@ -2,12 +2,14 @@ var fallback = require('./plugins/fallback')
 var math = require('./plugins/math')
 var counting = require('./plugins/counting')
 var timeParser = require('./plugins/time')
+var personalInfo = require('./plugins/personalInfo')
 
 const tasks = (msgObj) => {
   return new Promise(resolve => {
     math(msgObj)
     .then(msgObj => counting(msgObj))
     .then(msgObj => timeParser(msgObj))
+    .then(msgObj => personalInfo(msgObj))
     .then(msgObj => fallback(msgObj))
     .then(msgObj => {
       resolve(msgObj)

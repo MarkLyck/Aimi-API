@@ -39,6 +39,7 @@ function speechtagger(msgObj) {
           break
         case 'PP$':
         case 'PRP':
+        case 'PRP$':
           pronouns.push(word[0])
           break
         case 'JJ': // Adjectives

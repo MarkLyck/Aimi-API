@@ -9,14 +9,17 @@ const units = [
   'months',
   'years',
   'decades',
+
   'centimeters',
   'milimeters',
   'meters',
   'kilometers',
+
   'degrees',
   'celcius',
   'fahrenheit',
   'kelvin',
+
   'letters',
 ]
 

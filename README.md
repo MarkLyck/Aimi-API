@@ -19,7 +19,7 @@ The above is ideal information for generating fake accounts on social media, but
 The main goal for this app is to "qualify" for the Loebner prize.
 
 To qualify for the Loebner Prize I need to easily pass the screener questions. Here they are for reference:
-- [ ] My name is Bill. What is your name?
+- [X] My name is Bill. What is your name?
 - [X] How many letters are there in the name Bill?
 - [ ] How many letters are there in my name?
 - [ ] Which is larger, an apple or a watermelon?

@@ -27,7 +27,7 @@ To qualify for the Loebner Prize I need to easily pass the screener questions. H
 - [X] How much is three plus two?
 - [ ] What is my name?
 - [ ] If John is taller than Mary, who is the shorter?
-- [ ] If it were 3:15 AM now, what time would it be in 60 minutes?
+- [X] If it were 3:15 AM now, what time would it be in 60 minutes?
 - [ ] My friend John likes to fish for trout. What does John like to fish for?
 - [X] What number comes after seventeen?
 - [ ] What is the name of my friend who fishes for trout?

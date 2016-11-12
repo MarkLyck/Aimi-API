@@ -26,7 +26,7 @@ const units = [
 
 function tagUnits(msgObj) {
   return new Promise(resolve => {
-    if (_.intersection(msgObj.cleanedMessage.split(' '), units).length > 0) {
+    if (_.intersection(msgObj.cleanedMessage.split(' '), units).length) {
       let unitsFound = []
       msgObj.cleanedMessage.split(' ').forEach(word => {
         const unitIndex = units.indexOf(word)

@@ -19,7 +19,21 @@ function speechtagger(msgObj) {
 
       switch(word[1]) {
         case 'CD': // Numbers
-          numbers.push(Number(word[0]))
+          if (!isNaN(Number(word[0]))) {
+            if (msgObj.cleanedMessage.split('').indexOf(':') > -1) {
+              var messageWithTime = msgObj.cleanedMessage.replace(':', ' : ')
+              var colonIndex = messageWithTime.split(' ').indexOf(':')
+              if (messageWithTime.split(' ')[colonIndex - 1] !== word[0]
+                  && messageWithTime.split(' ')[colonIndex + 1] !== word[0]) {
+                numbers.push(Number(word[0]))
+              }
+            } else {
+              numbers.push(Number(word[0]))
+            }
+
+            console.log('NUMBER :', word)
+
+          }
           break
         case 'NN': // Nouns
         case 'NNS':

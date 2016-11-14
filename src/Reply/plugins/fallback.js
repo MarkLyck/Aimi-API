@@ -2,13 +2,14 @@
 
 const fallback = (msgObj) => {
   return new Promise(resolve => {
-    console.log('reply in fallback' , msgObj.reply)
     if (msgObj.reply) {
       resolve(msgObj)
+    } else if (msgObj.isQuestion) {
+      msgObj.reply = 'I don\'t know'
     } else {
       msgObj.reply = 'I don\'t understand'
-      resolve(msgObj)
     }
+    resolve(msgObj)
   })
 }
 

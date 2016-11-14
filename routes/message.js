@@ -4,29 +4,19 @@ const NLPtasks = require('../src/NLP/tasks')
 const replyTasks = require('../src/Reply/tasks')
 const dataTasks = require('../src/data/tasks')
 const private = require('../private')
-const MongoClient = require('mongodb').MongoClient
 
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://' + private.mongoUser + ':' + private.mongoPW + '@ds153677.mlab.com:53677/aimi')
 
-let db
-MongoClient.connect('mongodb://' + private.mongoUser + ':' + private.mongoPW + '@ds153677.mlab.com:53677/aimi', (err, database) => {
-  // Start MongoDB
-  if (err) return console.log(err)
-  db = database
-
-  router.post('/', function(req, res, next) {
-    // console.log(req.body)
-    NLPtasks(req.body.body, db)
-    .then(dataTasks)
-    .then(replyTasks)
-    .then((response) => {
-      console.log('sending response: ', response)
-      res.send(response)
-    })
-    .catch((e) => console.log(e))
+router.post('/', function(req, res, next) {
+  NLPtasks(req.body.body)
+  .then(dataTasks)
+  .then(replyTasks)
+  .then((response) => {
+    console.log('sending response: ', response)
+    res.send(response)
   })
-
+  .catch((e) => console.log(e))
 })
-
-
 
 module.exports = router;

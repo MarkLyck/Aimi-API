@@ -1,7 +1,11 @@
+const name = require('./plugins/name')
 
-const tasks = (msgObj) => {
+const tasks = (msgObj, db) => {
   return new Promise(resolve => {
-    resolve(msgObj)
+    name(msgObj, db)
+    .then(msgObj => {
+      resolve(msgObj)
+    })
   })
 }
 

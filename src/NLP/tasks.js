@@ -5,17 +5,16 @@ var isCommand = require('./plugins/isCommand')
 var tagUnits = require('./plugins/units')
 var dateTime = require('./plugins/datetime')
 
-function tasks(message) {
+function tasks(message, db) {
   return new Promise((resolve, reject) => {
     normalizer(message)
-    .then(cleanMessage => questionInfo(cleanMessage))
-    .then(msgObj => speechTagger(msgObj))
-    .then(msgObj => tagUnits(msgObj))
-    .then(msgObj => dateTime(msgObj))
-    .then(msgObj => isCommand(msgObj))
+    .then(questionInfo)
+    .then(speechTagger)
+    .then(tagUnits)
+    .then(dateTime)
+    .then(isCommand)
     .then(msgObj => {
-      console.log(msgObj)
-      resolve(msgObj)
+      resolve(msgObj, db)
     })
   })
 }

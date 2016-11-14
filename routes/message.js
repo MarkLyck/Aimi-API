@@ -1,17 +1,32 @@
-var express = require('express');
-var router = express.Router();
-var NLPtasks = require('../NLP/tasks')
-var replyTasks = require('../Reply/tasks')
+const express = require('express');
+const router = express.Router();
+const NLPtasks = require('../src/NLP/tasks')
+const replyTasks = require('../src/Reply/tasks')
+const dataTasks = require('../src/data/tasks')
+const private = require('../private')
+const MongoClient = require('mongodb').MongoClient
 
-router.post('/', function(req, res, next) {
-  // console.log(req.body)
-  NLPtasks(req.body.body)
-  .then((msgObj) => replyTasks(msgObj))
-  .then((response) => {
-    console.log('sending response: ', response)
-    res.send(response)
+
+let db
+MongoClient.connect('mongodb://' + private.mongoUser + ':' + private.mongoPW + '@ds153677.mlab.com:53677/aimi', (err, database) => {
+  // Start MongoDB
+  if (err) return console.log(err)
+  db = database
+
+  router.post('/', function(req, res, next) {
+    // console.log(req.body)
+    NLPtasks(req.body.body, db)
+    .then(dataTasks)
+    .then(replyTasks)
+    .then((response) => {
+      console.log('sending response: ', response)
+      res.send(response)
+    })
+    .catch((e) => console.log(e))
   })
-  .catch((e) => console.log(e))
+
 })
+
+
 
 module.exports = router;

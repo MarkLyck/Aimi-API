@@ -7,10 +7,10 @@ var personalInfo = require('./plugins/personalInfo')
 const tasks = (msgObj) => {
   return new Promise(resolve => {
     math(msgObj)
-    .then(msgObj => counting(msgObj))
-    .then(msgObj => timeParser(msgObj))
-    .then(msgObj => personalInfo(msgObj))
-    .then(msgObj => fallback(msgObj))
+    .then(counting)
+    .then(timeParser)
+    .then(personalInfo)
+    .then(fallback)
     .then(msgObj => {
       resolve(msgObj)
     })

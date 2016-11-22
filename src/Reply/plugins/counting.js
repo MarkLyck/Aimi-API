@@ -1,4 +1,6 @@
 var _ = require('lodash')
+var mongoose = require('mongoose')
+var User = require('../../data/models/User')
 
 const countingTriggers = ['after', 'before', 'letter', 'letters', 'last', '1st', 'alphabet']
 const countingWords = ['after', 'before', 'last', '1st']
@@ -71,6 +73,12 @@ const letterCounting = (msgObj) => {
       msgObj.reply = wordToCount.length
     } else if (msgObj.names.length > 0) {
       msgObj.reply = msgObj.names[0].length
+    } else {
+      console.log('COUNT MY NAME');
+      User.find({ username: private.userName }, (err, docs) => {
+        console.log('FOUND USER: ', docs);
+        msgObj.reply = docs
+      })
     }
   }
   return msgObj

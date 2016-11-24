@@ -25,7 +25,7 @@ To qualify for the Loebner Prize I need to easily pass the screener questions. H
 - [ ] Which is larger, an apple or a watermelon?
 - [X] How much is 3 + 2?
 - [X] How much is three plus two?
-- [ ] What is my name?
+- [X] What is my name?
 - [ ] If John is taller than Mary, who is the shorter?
 - [X] If it were 3:15 AM now, what time would it be in 60 minutes?
 - [ ] My friend John likes to fish for trout. What does John like to fish for?

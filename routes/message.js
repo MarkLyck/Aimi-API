@@ -14,9 +14,9 @@ var db = mongoose.connection
 
 db.once('open', function() {
   // we're connected!
-  User.find({ username: private.userName }, (err, docs) => {
-    console.log('FOUND USER: ', err, docs)
-  })
+  // User.find({ userName: private.userName }, (err, docs) => {
+  //   console.log('FOUND USER: ', err, docs)
+  // })
 })
 
 

@@ -1,5 +1,6 @@
 let store = {
-  user: {}
+  user: {},
+  context: ''
 }
 
 module.exports = store

@@ -2,7 +2,7 @@ const bot = {
   name: 'Aimi'
 }
 
-const personalInfo = (msgObj) => {
+const botInfo = (msgObj) => {
   return new Promise(resolve => {
     if (msgObj.reply || !msgObj.isQuestion) {
       resolve(msgObj)
@@ -17,4 +17,4 @@ const personalInfo = (msgObj) => {
   })
 }
 
-module.exports = personalInfo
+module.exports = botInfo
